@@ -1,6 +1,6 @@
 Pod::Spec.new do |spec|
   spec.name                  = 'SudoConfigManager'
-  spec.version               = '1.3.0'
+  spec.version               = '1.4.0'
   spec.author                = { 'Sudo Platform Engineering' => 'sudoplatform-engineering@anonyome.com' }
   spec.homepage              = 'https://sudoplatform.com'
   spec.summary               = 'Config Manager SDK for the Sudo Platform by Anonyome Labs.'

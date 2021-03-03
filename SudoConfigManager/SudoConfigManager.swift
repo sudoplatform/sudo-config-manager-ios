@@ -60,8 +60,54 @@ public class DefaultSudoConfigManager: SudoConfigManager {
         }
     }
 
+    public init(logger: Logger? = nil, config: [String: Any]) {
+        self.logger = logger ?? Logger.sudoConfigManagerLogger
+        self.config = config
+
+        self.logger.info("Loaded the config: \(config)")
+    }
+
     public func getConfigSet(namespace: String) -> [String: Any]? {
         return self.config[namespace] as? [String: Any]
+    }
+
+}
+
+/// Creates and manages `SudoConfigManager` instances. By default it has 1 `SudoConfigManager`
+/// instance named "default" that holds the config loaded from `sudoplatformconfig.json` file located in the app
+/// bundle.
+public class SudoConfigManagerFactory {
+
+    public struct Constants {
+        public static let defaultConfigManagerName = "default"
+    }
+
+    public static let instance = SudoConfigManagerFactory()
+
+    private var configManagers: [String: SudoConfigManager] = [:]
+
+    private init() {
+        self.configManagers[Constants.defaultConfigManagerName] = DefaultSudoConfigManager()
+    }
+
+
+    /// Registers a new `SudoConfigManager`of the specified name with the provided configuration.
+    ///
+    /// - Parameters:
+    ///   - name: `SudoConfigManager` instance name.
+    ///   - config: Configuration to load into the new `SudoConfigManager` instance.
+    ///   - logger: Logger to use for the new `SudoConfigManager` instance..
+    public func registerConfigManager(name: String, config: [String: Any], logger: Logger? = nil) {
+        self.configManagers[name] = DefaultSudoConfigManager(logger: logger, config: config)
+    }
+
+
+    /// Returns the `SudoConfigManager` instance of the specified name.
+    ///
+    /// - Parameter name: `SudoConfigManager` instance name.
+    /// - Returns: `SudoConfigManager` instance or nil if it is not found.
+    public func getConfigManager(name: String) -> SudoConfigManager? {
+        return self.configManagers[name]
     }
 
 }
