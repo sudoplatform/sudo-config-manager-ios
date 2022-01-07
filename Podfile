@@ -14,3 +14,7 @@ end
 target "SudoConfigManagerTests" do
   podspec :name => 'SudoConfigManager'
 end
+
+target "SudoConfigManagerIntegrationTests" do
+  podspec :name => 'SudoConfigManager'
+end

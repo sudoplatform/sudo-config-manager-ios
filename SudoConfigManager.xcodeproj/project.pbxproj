@@ -9,13 +9,24 @@
 /* Begin PBXBuildFile section */
 		41916678CDEBAB50410AFDC4 /* Pods_SudoConfigManagerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D244E2FE317A6CD988E7E3E4 /* Pods_SudoConfigManagerTests.framework */; };
 		626AAD2F5D8A4566C60F39D8 /* Pods_SudoConfigManager.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 174F6B7EF62ED6E97E61A122 /* Pods_SudoConfigManager.framework */; };
+		B33251FF21D52A6982149286 /* Pods_SudoConfigManagerIntegrationTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42419D15F48BAE00B3C4A38C /* Pods_SudoConfigManagerIntegrationTests.framework */; };
 		D90CDBB623D6BCBA0096E62F /* SudoConfigManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9FD3DB823D69AFE00781D80 /* SudoConfigManager.swift */; };
+		D91AD5D82787A56800006210 /* Dictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = D91AD5D72787A56800006210 /* Dictionary.swift */; };
 		D931C7B92342D22700932612 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D931C7B82342D22700932612 /* AppDelegate.swift */; };
 		D931C7BB2342D22700932612 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D931C7BA2342D22700932612 /* ViewController.swift */; };
 		D931C7BE2342D22700932612 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D931C7BC2342D22700932612 /* Main.storyboard */; };
 		D931C7C02342D22800932612 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D931C7BF2342D22800932612 /* Assets.xcassets */; };
 		D931C7C32342D22800932612 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D931C7C12342D22800932612 /* LaunchScreen.storyboard */; };
 		D931C7CB2342D3D000932612 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = D931C7CA2342D3D000932612 /* Data.swift */; };
+		D9674481278667AE00A3469C /* SudoConfigManagerIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9674480278667AE00A3469C /* SudoConfigManagerIntegrationTests.swift */; };
+		D9674482278667AE00A3469C /* SudoConfigManager.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9971C5822FD299A0077076C /* SudoConfigManager.framework */; };
+		D967448D2786805E00A3469C /* SudoOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D967448C2786805E00A3469C /* SudoOperation.swift */; };
+		D967448F2786817800A3469C /* NSLock.swift in Sources */ = {isa = PBXBuildFile; fileRef = D967448E2786817800A3469C /* NSLock.swift */; };
+		D9674491278681AA00A3469C /* DownloadJSONS3Object.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9674490278681AA00A3469C /* DownloadJSONS3Object.swift */; };
+		D967449327868DB900A3469C /* ListJSONS3Objects.swift in Sources */ = {isa = PBXBuildFile; fileRef = D967449227868DB900A3469C /* ListJSONS3Objects.swift */; };
+		D967449527869B9800A3469C /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = D967449427869B9800A3469C /* Date.swift */; };
+		D96744982786A7EE00A3469C /* S3Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = D96744972786A7EE00A3469C /* S3Client.swift */; };
+		D97611D62785139700E9D6C5 /* AWSEndpoint.swft.swift in Sources */ = {isa = PBXBuildFile; fileRef = D97611D52785139700E9D6C5 /* AWSEndpoint.swft.swift */; };
 		D9971C6222FD299A0077076C /* SudoConfigManager.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9971C5822FD299A0077076C /* SudoConfigManager.framework */; };
 		D9971C6722FD299A0077076C /* SudoConfigManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9971C6622FD299A0077076C /* SudoConfigManagerTests.swift */; };
 		D9971C6922FD299A0077076C /* SudoConfigManager.h in Headers */ = {isa = PBXBuildFile; fileRef = D9971C5B22FD299A0077076C /* SudoConfigManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -24,6 +35,20 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		D9674483278667AE00A3469C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D9971C4F22FD299A0077076C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D9971C5722FD299A0077076C;
+			remoteInfo = SudoConfigManager;
+		};
+		D96744882786682D00A3469C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D9971C4F22FD299A0077076C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D931C7B52342D22700932612;
+			remoteInfo = TestApp;
+		};
 		D9971C6322FD299A0077076C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D9971C4F22FD299A0077076C /* Project object */;
@@ -42,11 +67,13 @@
 
 /* Begin PBXFileReference section */
 		174F6B7EF62ED6E97E61A122 /* Pods_SudoConfigManager.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SudoConfigManager.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		42419D15F48BAE00B3C4A38C /* Pods_SudoConfigManagerIntegrationTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SudoConfigManagerIntegrationTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7F1F89078F7990E14C962D76 /* Pods-SudoConfigManagerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SudoConfigManagerTests.release.xcconfig"; path = "Target Support Files/Pods-SudoConfigManagerTests/Pods-SudoConfigManagerTests.release.xcconfig"; sourceTree = "<group>"; };
 		96F30BC6EFED410982BB0B26 /* Pods-SudoConfigManager.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SudoConfigManager.release.xcconfig"; path = "Target Support Files/Pods-SudoConfigManager/Pods-SudoConfigManager.release.xcconfig"; sourceTree = "<group>"; };
 		B454FAE8C8AD1BDEDB98C4FB /* Pods-SudoConfigManager.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SudoConfigManager.debug.xcconfig"; path = "Target Support Files/Pods-SudoConfigManager/Pods-SudoConfigManager.debug.xcconfig"; sourceTree = "<group>"; };
 		BAB226F73344EBB4FE59C760 /* Pods-SudoConfigManagerTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SudoConfigManagerTests.debug.xcconfig"; path = "Target Support Files/Pods-SudoConfigManagerTests/Pods-SudoConfigManagerTests.debug.xcconfig"; sourceTree = "<group>"; };
 		D244E2FE317A6CD988E7E3E4 /* Pods_SudoConfigManagerTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SudoConfigManagerTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D91AD5D72787A56800006210 /* Dictionary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dictionary.swift; sourceTree = "<group>"; };
 		D931C7B62342D22700932612 /* TestApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TestApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D931C7B82342D22700932612 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D931C7BA2342D22700932612 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -55,6 +82,15 @@
 		D931C7C22342D22800932612 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D931C7C42342D22800932612 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D931C7CA2342D3D000932612 /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
+		D967447E278667AE00A3469C /* SudoConfigManagerIntegrationTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SudoConfigManagerIntegrationTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		D9674480278667AE00A3469C /* SudoConfigManagerIntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SudoConfigManagerIntegrationTests.swift; sourceTree = "<group>"; };
+		D967448C2786805E00A3469C /* SudoOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SudoOperation.swift; sourceTree = "<group>"; };
+		D967448E2786817800A3469C /* NSLock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSLock.swift; sourceTree = "<group>"; };
+		D9674490278681AA00A3469C /* DownloadJSONS3Object.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadJSONS3Object.swift; sourceTree = "<group>"; };
+		D967449227868DB900A3469C /* ListJSONS3Objects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListJSONS3Objects.swift; sourceTree = "<group>"; };
+		D967449427869B9800A3469C /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
+		D96744972786A7EE00A3469C /* S3Client.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = S3Client.swift; sourceTree = "<group>"; };
+		D97611D52785139700E9D6C5 /* AWSEndpoint.swft.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AWSEndpoint.swft.swift; sourceTree = "<group>"; };
 		D9971C5822FD299A0077076C /* SudoConfigManager.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SudoConfigManager.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D9971C5B22FD299A0077076C /* SudoConfigManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SudoConfigManager.h; sourceTree = "<group>"; };
 		D9971C5C22FD299A0077076C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -64,6 +100,8 @@
 		D9971C7D22FD46650077076C /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		D9FD3DB823D69AFE00781D80 /* SudoConfigManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SudoConfigManager.swift; sourceTree = "<group>"; };
 		D9FD3DC223D6A2BC00781D80 /* sudoplatformconfig.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = sudoplatformconfig.json; sourceTree = "<group>"; };
+		ED1877927BD532ECFFB6943E /* Pods-SudoConfigManagerIntegrationTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SudoConfigManagerIntegrationTests.debug.xcconfig"; path = "Target Support Files/Pods-SudoConfigManagerIntegrationTests/Pods-SudoConfigManagerIntegrationTests.debug.xcconfig"; sourceTree = "<group>"; };
+		EDC38AA65A9ECCF8E89FBF37 /* Pods-SudoConfigManagerIntegrationTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SudoConfigManagerIntegrationTests.release.xcconfig"; path = "Target Support Files/Pods-SudoConfigManagerIntegrationTests/Pods-SudoConfigManagerIntegrationTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,6 +109,15 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D967447B278667AE00A3469C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D9674482278667AE00A3469C /* SudoConfigManager.framework in Frameworks */,
+				B33251FF21D52A6982149286 /* Pods_SudoConfigManagerIntegrationTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -101,6 +148,8 @@
 				96F30BC6EFED410982BB0B26 /* Pods-SudoConfigManager.release.xcconfig */,
 				BAB226F73344EBB4FE59C760 /* Pods-SudoConfigManagerTests.debug.xcconfig */,
 				7F1F89078F7990E14C962D76 /* Pods-SudoConfigManagerTests.release.xcconfig */,
+				ED1877927BD532ECFFB6943E /* Pods-SudoConfigManagerIntegrationTests.debug.xcconfig */,
+				EDC38AA65A9ECCF8E89FBF37 /* Pods-SudoConfigManagerIntegrationTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -110,6 +159,7 @@
 			children = (
 				174F6B7EF62ED6E97E61A122 /* Pods_SudoConfigManager.framework */,
 				D244E2FE317A6CD988E7E3E4 /* Pods_SudoConfigManagerTests.framework */,
+				42419D15F48BAE00B3C4A38C /* Pods_SudoConfigManagerIntegrationTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -129,12 +179,39 @@
 			path = TestApp;
 			sourceTree = "<group>";
 		};
+		D967447F278667AE00A3469C /* SudoConfigManagerIntegrationTests */ = {
+			isa = PBXGroup;
+			children = (
+				D9674480278667AE00A3469C /* SudoConfigManagerIntegrationTests.swift */,
+			);
+			path = SudoConfigManagerIntegrationTests;
+			sourceTree = "<group>";
+		};
+		D967448B2786804600A3469C /* Operation */ = {
+			isa = PBXGroup;
+			children = (
+				D967448C2786805E00A3469C /* SudoOperation.swift */,
+				D9674490278681AA00A3469C /* DownloadJSONS3Object.swift */,
+				D967449227868DB900A3469C /* ListJSONS3Objects.swift */,
+			);
+			name = Operation;
+			sourceTree = "<group>";
+		};
+		D96744962786A7D700A3469C /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				D96744972786A7EE00A3469C /* S3Client.swift */,
+			);
+			name = Util;
+			sourceTree = "<group>";
+		};
 		D9971C4E22FD299A0077076C = {
 			isa = PBXGroup;
 			children = (
 				D9971C5A22FD299A0077076C /* SudoConfigManager */,
 				D9971C6522FD299A0077076C /* SudoConfigManagerTests */,
 				D931C7B72342D22700932612 /* TestApp */,
+				D967447F278667AE00A3469C /* SudoConfigManagerIntegrationTests */,
 				D9971C5922FD299A0077076C /* Products */,
 				C1CFCFDA6A8EDCBA54AF85D7 /* Pods */,
 				C24C22AE82CC7CE8BAB838BA /* Frameworks */,
@@ -147,6 +224,7 @@
 				D9971C5822FD299A0077076C /* SudoConfigManager.framework */,
 				D9971C6122FD299A0077076C /* SudoConfigManagerTests.xctest */,
 				D931C7B62342D22700932612 /* TestApp.app */,
+				D967447E278667AE00A3469C /* SudoConfigManagerIntegrationTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -154,6 +232,8 @@
 		D9971C5A22FD299A0077076C /* SudoConfigManager */ = {
 			isa = PBXGroup;
 			children = (
+				D96744962786A7D700A3469C /* Util */,
+				D967448B2786804600A3469C /* Operation */,
 				D9971C7A22FD41090077076C /* Extension */,
 				D9971C5B22FD299A0077076C /* SudoConfigManager.h */,
 				D9971C5C22FD299A0077076C /* Info.plist */,
@@ -177,6 +257,10 @@
 			isa = PBXGroup;
 			children = (
 				D931C7CA2342D3D000932612 /* Data.swift */,
+				D97611D52785139700E9D6C5 /* AWSEndpoint.swft.swift */,
+				D967448E2786817800A3469C /* NSLock.swift */,
+				D967449427869B9800A3469C /* Date.swift */,
+				D91AD5D72787A56800006210 /* Dictionary.swift */,
 			);
 			name = Extension;
 			sourceTree = "<group>";
@@ -227,6 +311,28 @@
 			productReference = D931C7B62342D22700932612 /* TestApp.app */;
 			productType = "com.apple.product-type.application";
 		};
+		D967447D278667AE00A3469C /* SudoConfigManagerIntegrationTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D9674487278667AE00A3469C /* Build configuration list for PBXNativeTarget "SudoConfigManagerIntegrationTests" */;
+			buildPhases = (
+				4CCEF5A1B0055F70660678C2 /* [CP] Check Pods Manifest.lock */,
+				D967447A278667AE00A3469C /* Sources */,
+				D967447B278667AE00A3469C /* Frameworks */,
+				D967447C278667AE00A3469C /* Resources */,
+				0D188E57A06BD05DB14640B0 /* [CP] Embed Pods Frameworks */,
+				D967448A27866E5100A3469C /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D9674484278667AE00A3469C /* PBXTargetDependency */,
+				D96744892786682D00A3469C /* PBXTargetDependency */,
+			);
+			name = SudoConfigManagerIntegrationTests;
+			productName = SudoConfigManagerIntegrationTests;
+			productReference = D967447E278667AE00A3469C /* SudoConfigManagerIntegrationTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		D9971C5722FD299A0077076C /* SudoConfigManager */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = D9971C6C22FD299A0077076C /* Build configuration list for PBXNativeTarget "SudoConfigManager" */;
@@ -273,11 +379,14 @@
 		D9971C4F22FD299A0077076C /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1030;
+				LastSwiftUpdateCheck = 1320;
 				LastUpgradeCheck = 1030;
 				TargetAttributes = {
 					D931C7B52342D22700932612 = {
 						CreatedOnToolsVersion = 10.3;
+					};
+					D967447D278667AE00A3469C = {
+						CreatedOnToolsVersion = 13.2.1;
 					};
 					D9971C5722FD299A0077076C = {
 						CreatedOnToolsVersion = 10.3;
@@ -305,6 +414,7 @@
 				D9971C5722FD299A0077076C /* SudoConfigManager */,
 				D9971C6022FD299A0077076C /* SudoConfigManagerTests */,
 				D931C7B52342D22700932612 /* TestApp */,
+				D967447D278667AE00A3469C /* SudoConfigManagerIntegrationTests */,
 			);
 		};
 /* End PBXProject section */
@@ -318,6 +428,13 @@
 				D9FD3DC323D6A2BC00781D80 /* sudoplatformconfig.json in Resources */,
 				D931C7C02342D22800932612 /* Assets.xcassets in Resources */,
 				D931C7BE2342D22700932612 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D967447C278667AE00A3469C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -338,6 +455,45 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		0D188E57A06BD05DB14640B0 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SudoConfigManagerIntegrationTests/Pods-SudoConfigManagerIntegrationTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SudoConfigManagerIntegrationTests/Pods-SudoConfigManagerIntegrationTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SudoConfigManagerIntegrationTests/Pods-SudoConfigManagerIntegrationTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		4CCEF5A1B0055F70660678C2 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SudoConfigManagerIntegrationTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
 		4DC089F9D2CAB201FB687C9C /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -377,6 +533,23 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		D967448A27866E5100A3469C /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\ncp -f config/sudoplatformconfig.json \"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/\" || :\n";
+		};
 		EA70016F6FA267B92DD6EEA9 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -411,13 +584,29 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		D967447A278667AE00A3469C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D9674481278667AE00A3469C /* SudoConfigManagerIntegrationTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D9971C5422FD299A0077076C /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				D90CDBB623D6BCBA0096E62F /* SudoConfigManager.swift in Sources */,
+				D967448D2786805E00A3469C /* SudoOperation.swift in Sources */,
+				D967449327868DB900A3469C /* ListJSONS3Objects.swift in Sources */,
 				D931C7CB2342D3D000932612 /* Data.swift in Sources */,
+				D91AD5D82787A56800006210 /* Dictionary.swift in Sources */,
 				D9971C7E22FD46650077076C /* Logger.swift in Sources */,
+				D97611D62785139700E9D6C5 /* AWSEndpoint.swft.swift in Sources */,
+				D967448F2786817800A3469C /* NSLock.swift in Sources */,
+				D967449527869B9800A3469C /* Date.swift in Sources */,
+				D96744982786A7EE00A3469C /* S3Client.swift in Sources */,
+				D9674491278681AA00A3469C /* DownloadJSONS3Object.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -432,6 +621,16 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		D9674484278667AE00A3469C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D9971C5722FD299A0077076C /* SudoConfigManager */;
+			targetProxy = D9674483278667AE00A3469C /* PBXContainerItemProxy */;
+		};
+		D96744892786682D00A3469C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D931C7B52342D22700932612 /* TestApp */;
+			targetProxy = D96744882786682D00A3469C /* PBXContainerItemProxy */;
+		};
 		D9971C6422FD299A0077076C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = D9971C5722FD299A0077076C /* SudoConfigManager */;
@@ -494,6 +693,46 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.sudoplatform.TestApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		D9674485278667AE00A3469C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = ED1877927BD532ECFFB6943E /* Pods-SudoConfigManagerIntegrationTests.debug.xcconfig */;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = UU2W43R8JA;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sudoplatform.SudoConfigManagerIntegrationTests.SudoConfigManagerIntegrationTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		D9674486278667AE00A3469C /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = EDC38AA65A9ECCF8E89FBF37 /* Pods-SudoConfigManagerIntegrationTests.release.xcconfig */;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = UU2W43R8JA;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sudoplatform.SudoConfigManagerIntegrationTests.SudoConfigManagerIntegrationTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -725,6 +964,15 @@
 			buildConfigurations = (
 				D931C7C62342D22800932612 /* Debug */,
 				D931C7C72342D22800932612 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D9674487278667AE00A3469C /* Build configuration list for PBXNativeTarget "SudoConfigManagerIntegrationTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D9674485278667AE00A3469C /* Debug */,
+				D9674486278667AE00A3469C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

@@ -1,6 +1,6 @@
 Pod::Spec.new do |spec|
   spec.name                  = 'SudoConfigManager'
-  spec.version               = '1.4.0'
+  spec.version               = '1.5.0'
   spec.author                = { 'Sudo Platform Engineering' => 'sudoplatform-engineering@anonyome.com' }
   spec.homepage              = 'https://sudoplatform.com'
   spec.summary               = 'Config Manager SDK for the Sudo Platform by Anonyome Labs.'
@@ -11,4 +11,5 @@ Pod::Spec.new do |spec|
   spec.requires_arc          = true
   spec.swift_version         = '5.0'
   spec.dependency 'SudoLogging', '~> 0.2'
+  spec.dependency 'AWSS3', '~> 2.24.2'
 end
