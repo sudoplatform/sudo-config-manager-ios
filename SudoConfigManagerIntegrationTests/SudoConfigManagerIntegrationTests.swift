@@ -23,31 +23,15 @@ class SudoConfigManagerIntegrationTests: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
     
-    func testValidateConfig() throws {
-        let expectation = self.expectation(description: "")
+    func testValidateConfig() async throws {
         do {
-            try self.configManager.validateConfig { (result) in
-                defer {
-                    expectation.fulfill()
-                }
-                
-                switch result {
-                case let .failure(cause):
-                    switch cause {
-                    case SudoConfigManagerError.compatibilityIssueFound(let incompatible, let deprecated):
-                        XCTAssertTrue(incompatible.isEmpty)
-                        XCTAssertFalse(deprecated.isEmpty)
-                    default:
-                        XCTFail("Expected error not returned.")
-                    }
-                case .success:
-                    XCTFail("Unexpected success result returned.")
-                }
-            }
+            try await self.configManager.validateConfig()
+        } catch SudoConfigManagerError.compatibilityIssueFound(let incompatible, let deprecated) {
+            XCTAssertTrue(incompatible.isEmpty)
+            XCTAssertFalse(deprecated.isEmpty)
         } catch {
             XCTFail("Failed to validate config: \(error)")
         }
-        self.wait(for: [expectation], timeout: 20)
     }
     
 }

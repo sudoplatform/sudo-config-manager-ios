@@ -64,14 +64,10 @@ public protocol SudoConfigManager: AnyObject {
     
     /// Validates the client configuration (sudoplatformconfig.json) against the currently deployed set of
     /// backend services. If the client configuration is valid, i.e. the client is compatible will all deployed
-    /// backend services, then the call will complete with `success` result. If any part of the client
-    /// configuration is incompatible then a detailed information on the incompatible service will be
-    /// returned in `failure` result. See `SudoConfigManagerError.compatibilityIssueFound`
-    /// for more detail.
-    ///
-    /// - Returns: Validation result. `success` if all valid and `failure` with the details of incompatible
-    ///     or deprecated service configurations if at least one if invalid.
-    func validateConfig(completion: @escaping(Swift.Result<Void, Error>) -> Void) throws
+    /// backend services, then the call will complete without an error. If any part of the client configuration
+    /// is incompatible then a detailed information on the incompatible services will be included in the
+    /// `SudoConfigManagerError.compatibilityIssueFound` error thrown.
+    func validateConfig() async throws
     
 }
 
@@ -106,8 +102,6 @@ public class DefaultSudoConfigManager: SudoConfigManager {
     private var s3Client: S3Client? = nil
     
     private var config: [String: Any] = [:]
-    
-    private let operationQueue = OperationQueue()
 
     /// Initializes a `DefaultSudoConfigManager` instance.`
     ///
@@ -170,65 +164,58 @@ public class DefaultSudoConfigManager: SudoConfigManager {
         return self.config[namespace] as? [String: Any]
     }
     
-    public func validateConfig(completion: @escaping(Swift.Result<Void, Error>) -> Void) throws {
+    public func validateConfig() async throws {
         guard let s3Client = self.s3Client else {
-            return completion(.success(()))
+            return
         }
         
-        let listOp = ListJSONS3Objects(s3Client: s3Client)
-        listOp.completionBlock = {
-            if let error = listOp.error {
-                return completion(.failure(error))
+        let keys = try await s3Client.listObjects()
+        
+        // Only fetch the service info docs for the services that are present in client config
+        // to minimize the network calls.
+        let servicesInfoToFetch = Array(Set(keys).intersection(Set(self.config.keys.map { "\($0).json"})))
+        
+        var incompatible: [ServiceCompatibilityInfo] = []
+        var deprecated: [ServiceCompatibilityInfo] = []
+        for key in servicesInfoToFetch {
+            let data = try await s3Client.getObject(key: key)
+            
+            guard let jsonObject = data.toJSONObject() as? [String: Any] else {
+                throw SudoConfigManagerError.fatalError(description: "Result did not contain JSON data.")
             }
             
-            // Only fetch the service info docs for the services that are present in client config
-            // to minimize the network calls.
-            let servicesInfoToFetch = Array(Set(listOp.keys).intersection(Set(self.config.keys.map { "\($0).json"})))
-            let getOps = servicesInfoToFetch.map { DownloadJSONS3Object(s3Client: s3Client, key: $0) }
-            self.operationQueue.addOperations(getOps, waitUntilFinished: true)
-            
-            var incompatible: [ServiceCompatibilityInfo] = []
-            var deprecated: [ServiceCompatibilityInfo] = []
-            
-            for getOp in getOps {
-                if let error = getOp.error {
-                    return completion(.failure(error))
-                }
-                
-                if let serviceName = getOp.jsonObject.keys.first,
-                   let serviceInfo = getOp.jsonObject[serviceName] as? [String: Any] {
-                    if let serviceConfig = self.config[serviceName] as? [String: Any] {
-                        let currentVersion = serviceConfig["version"] as? Int ?? 1
-                        let compatibilityInfo = ServiceCompatibilityInfo(
-                            name: serviceName,
-                            configVersion: currentVersion,
-                            minSupportedVersion: serviceInfo["minVersion"] as? Int,
-                            deprecatedVersion: serviceInfo["deprecated"] as? Int,
-                            deprecationGrace: (serviceInfo["deprecationGrace"] as? Int).map { Date(millisecondsSinceEpoch: Double($0)) }
-                        )
-                        
-                        // If the service config in `sudoplatformconfig.json` is less than the
-                        // minimum supported version then the client is incompatible.
-                        if currentVersion < (compatibilityInfo.minSupportedVersion ?? 0) {
-                            incompatible.append(compatibilityInfo)
-                        }
-                        
-                        // If the service config is less than or equal to the deprecated version
-                        // then it will be made incompatible after the deprecation grace.
-                        if currentVersion <= (compatibilityInfo.deprecatedVersion ?? 0) {
-                            deprecated.append(compatibilityInfo)
-                        }
+            if let serviceName = jsonObject.keys.first,
+               let serviceInfo = jsonObject[serviceName] as? [String: Any] {
+                if let serviceConfig = self.config[serviceName] as? [String: Any] {
+                    let currentVersion = serviceConfig["version"] as? Int ?? 1
+                    let compatibilityInfo = ServiceCompatibilityInfo(
+                        name: serviceName,
+                        configVersion: currentVersion,
+                        minSupportedVersion: serviceInfo["minVersion"] as? Int,
+                        deprecatedVersion: serviceInfo["deprecated"] as? Int,
+                        deprecationGrace: (serviceInfo["deprecationGrace"] as? Int).map { Date(millisecondsSinceEpoch: Double($0)) }
+                    )
+                    
+                    // If the service config in `sudoplatformconfig.json` is less than the
+                    // minimum supported version then the client is incompatible.
+                    if currentVersion < (compatibilityInfo.minSupportedVersion ?? 0) {
+                        incompatible.append(compatibilityInfo)
+                    }
+                    
+                    // If the service config is less than or equal to the deprecated version
+                    // then it will be made incompatible after the deprecation grace.
+                    if currentVersion <= (compatibilityInfo.deprecatedVersion ?? 0) {
+                        deprecated.append(compatibilityInfo)
                     }
                 }
             }
-            
-            if(incompatible.isEmpty && deprecated.isEmpty) {
-                completion(.success(()))
-            } else {
-                completion(.failure(SudoConfigManagerError.compatibilityIssueFound(incompatible: incompatible, deprecated: deprecated)))
-            }
         }
-        self.operationQueue.addOperation(listOp)
+        
+        if(incompatible.isEmpty && deprecated.isEmpty) {
+            return
+        } else {
+            throw SudoConfigManagerError.compatibilityIssueFound(incompatible: incompatible, deprecated: deprecated)
+        }
     }
 
 }
