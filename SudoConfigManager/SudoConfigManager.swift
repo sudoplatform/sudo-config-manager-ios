@@ -14,20 +14,20 @@ import AWSS3
 public struct ServiceCompatibilityInfo {
     /// Name of the service associated with the compatibility info. This matches one of
     /// the service name present in sudoplatformconfig.json.
-    let name: String
+    public let name: String
     /// Version of the service config present in sudoplatformconfig.json. It defaults
     /// to 1 if not present.
-    let configVersion: Int
+    public let configVersion: Int
     /// Minimum supported service config version currently supported by the backend.
-    let minSupportedVersion: Int?
+    public let minSupportedVersion: Int?
     /// Any service config version less than or equal to this version is considered
     /// deprecated and the backend may remove the support for those versions after
     /// a grace period.
-    let deprecatedVersion: Int?
+    public let deprecatedVersion: Int?
     /// After this time any deprecated service config versions will no longer be compatible
     /// with the backend. It is recommended to warn the user prior to the deprecation
     /// grace.
-    let deprecationGrace: Date?
+    public let deprecationGrace: Date?
 }
 
 /// List of errors returned `SudoConfigManger` implementations.
