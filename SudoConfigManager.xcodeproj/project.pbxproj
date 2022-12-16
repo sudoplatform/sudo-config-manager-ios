@@ -23,7 +23,7 @@
 		D967448F2786817800A3469C /* NSLock.swift in Sources */ = {isa = PBXBuildFile; fileRef = D967448E2786817800A3469C /* NSLock.swift */; };
 		D967449527869B9800A3469C /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = D967449427869B9800A3469C /* Date.swift */; };
 		D96744982786A7EE00A3469C /* S3Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = D96744972786A7EE00A3469C /* S3Client.swift */; };
-		D97611D62785139700E9D6C5 /* AWSEndpoint.swft.swift in Sources */ = {isa = PBXBuildFile; fileRef = D97611D52785139700E9D6C5 /* AWSEndpoint.swft.swift */; };
+		D97611D62785139700E9D6C5 /* AWSEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = D97611D52785139700E9D6C5 /* AWSEndpoint.swift */; };
 		D9971C6222FD299A0077076C /* SudoConfigManager.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9971C5822FD299A0077076C /* SudoConfigManager.framework */; };
 		D9971C6722FD299A0077076C /* SudoConfigManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9971C6622FD299A0077076C /* SudoConfigManagerTests.swift */; };
 		D9971C6922FD299A0077076C /* SudoConfigManager.h in Headers */ = {isa = PBXBuildFile; fileRef = D9971C5B22FD299A0077076C /* SudoConfigManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -84,7 +84,7 @@
 		D967448E2786817800A3469C /* NSLock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSLock.swift; sourceTree = "<group>"; };
 		D967449427869B9800A3469C /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		D96744972786A7EE00A3469C /* S3Client.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = S3Client.swift; sourceTree = "<group>"; };
-		D97611D52785139700E9D6C5 /* AWSEndpoint.swft.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AWSEndpoint.swft.swift; sourceTree = "<group>"; };
+		D97611D52785139700E9D6C5 /* AWSEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AWSEndpoint.swift; sourceTree = "<group>"; };
 		D9971C5822FD299A0077076C /* SudoConfigManager.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SudoConfigManager.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D9971C5B22FD299A0077076C /* SudoConfigManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SudoConfigManager.h; sourceTree = "<group>"; };
 		D9971C5C22FD299A0077076C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -240,7 +240,7 @@
 			isa = PBXGroup;
 			children = (
 				D931C7CA2342D3D000932612 /* Data.swift */,
-				D97611D52785139700E9D6C5 /* AWSEndpoint.swft.swift */,
+				D97611D52785139700E9D6C5 /* AWSEndpoint.swift */,
 				D967448E2786817800A3469C /* NSLock.swift */,
 				D967449427869B9800A3469C /* Date.swift */,
 				D91AD5D72787A56800006210 /* Dictionary.swift */,
@@ -583,7 +583,7 @@
 				D931C7CB2342D3D000932612 /* Data.swift in Sources */,
 				D91AD5D82787A56800006210 /* Dictionary.swift in Sources */,
 				D9971C7E22FD46650077076C /* Logger.swift in Sources */,
-				D97611D62785139700E9D6C5 /* AWSEndpoint.swft.swift in Sources */,
+				D97611D62785139700E9D6C5 /* AWSEndpoint.swift in Sources */,
 				D967448F2786817800A3469C /* NSLock.swift in Sources */,
 				D967449527869B9800A3469C /* Date.swift in Sources */,
 				D96744982786A7EE00A3469C /* S3Client.swift in Sources */,
