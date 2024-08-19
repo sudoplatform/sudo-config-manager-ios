@@ -14,7 +14,7 @@
             buildForAnalyzing = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "D9F16E6A22FD498E0055513F"
+               BlueprintIdentifier = "D967447D278667AE00A3469C"
                BuildableName = "SudoConfigManagerIntegrationTests.xctest"
                BlueprintName = "SudoConfigManagerIntegrationTests"
                ReferencedContainer = "container:SudoConfigManager.xcodeproj">
@@ -32,7 +32,7 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "D9F16E6A22FD498E0055513F"
+               BlueprintIdentifier = "D967447D278667AE00A3469C"
                BuildableName = "SudoConfigManagerIntegrationTests.xctest"
                BlueprintName = "SudoConfigManagerIntegrationTests"
                ReferencedContainer = "container:SudoConfigManager.xcodeproj">
@@ -53,7 +53,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "D9F16E6A22FD498E0055513F"
+            BlueprintIdentifier = "D967447D278667AE00A3469C"
             BuildableName = "SudoConfigManagerIntegrationTests.xctest"
             BlueprintName = "SudoConfigManagerIntegrationTests"
             ReferencedContainer = "container:SudoConfigManager.xcodeproj">

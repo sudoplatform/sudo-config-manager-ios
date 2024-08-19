@@ -27,6 +27,9 @@ class SudoConfigManagerIntegrationTests: XCTestCase {
         do {
             try await self.configManager.validateConfig()
         } catch SudoConfigManagerError.compatibilityIssueFound(let incompatible, let deprecated) {
+            if !incompatible.isEmpty {
+                print("\n# Incompatible is not empty: (\(incompatible)")
+            }
             XCTAssertTrue(incompatible.isEmpty)
             XCTAssertFalse(deprecated.isEmpty)
         } catch {
