@@ -1,0 +1,6 @@
+framework module Pods_SudoConfigManagerTests {
+  umbrella header "Pods-SudoConfigManagerTests-umbrella.h"
+
+  export *
+  module * { export * }
+}

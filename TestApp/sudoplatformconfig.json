@@ -1,0 +1,26 @@
+{
+  "identityService": {
+    "version": 1,
+    "region": "us-east-1",
+    "poolId": "us-east-1_xdfc8z76Y",
+    "clientId": "7i3jocnqkg3jch3gtld203qsap",
+    "identityPoolId": "us-east-1:a5031c5c-51cd-451b-9642-d761bd68a979",
+    "apiUrl": "https://mysudo-dev-id.anonyome.sudoplatform.com/graphql",
+    "apiKey": "da2-na33zdlnjvgyflnsllx55yv25e",
+    "bucket": "ids-core-mysudo-dev-userdatabucket2d841c35-jg82wviba404",
+    "serviceInfoBucket": "ids-core-mysudo-dev-userdatabucket2d841c35-jg82wviba404"
+  },
+  "apiService": {
+    "apiUrl": "https://mysudo-dev-api.anonyome.sudoplatform.com/graphql",
+    "region": "us-east-1"
+  },
+  "sudoService": {
+    "version": 2,
+    "apiUrl": "https://mysudo-dev-api.anonyome.sudoplatform.com/graphql",
+    "region": "us-east-1"
+  },
+  "IdentityVerificationService": {
+    "region": "us-east-1",
+    "apiUrl": "https://mysudo-dev-api.anonyome.sudoplatform.com/graphql"
+  }
+}

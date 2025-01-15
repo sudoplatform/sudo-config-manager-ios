@@ -14,8 +14,8 @@ DerivedData
 *.hmap
 *.ipa
 *.xcuserstate
-Carthage/Build/
 identity-system-test-config
 build/
+.build/
 docs/
 config/

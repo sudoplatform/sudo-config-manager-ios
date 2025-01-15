@@ -1,0 +1,25 @@
+PODS:
+  - AWSCore (2.36.7)
+  - AWSS3 (2.36.7):
+    - AWSCore (= 2.36.7)
+  - SudoLogging (1.0.0)
+
+DEPENDENCIES:
+  - AWSCore (~> 2.36.7)
+  - AWSS3 (~> 2.36.7)
+  - SudoLogging (~> 1.0)
+
+SPEC REPOS:
+  https://github.com/CocoaPods/Specs.git:
+    - AWSCore
+    - AWSS3
+    - SudoLogging
+
+SPEC CHECKSUMS:
+  AWSCore: e822fc90f8b3a7e6202091d9ceebd26a579a5161
+  AWSS3: 229dbf86cd5c600ebe70e374ee751051c846dc84
+  SudoLogging: 93238a71338292a650804358994c67f8f3816d20
+
+PODFILE CHECKSUM: ae5c2bbab42d96d5e333a87a75e9459315bdb708
+
+COCOAPODS: 1.15.2

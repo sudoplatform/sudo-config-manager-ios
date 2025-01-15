@@ -1,0 +1,6 @@
+framework module Pods_SudoConfigManager {
+  umbrella header "Pods-SudoConfigManager-umbrella.h"
+
+  export *
+  module * { export * }
+}
