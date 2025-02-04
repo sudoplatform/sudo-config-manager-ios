@@ -1,5 +1,5 @@
 //
-// Copyright © 2020 Anonyome Labs, Inc. All rights reserved.
+// Copyright © 2025 Anonyome Labs, Inc. All rights reserved.
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -9,32 +9,28 @@ import XCTest
 
 class SudoConfigManagerIntegrationTests: XCTestCase {
     
+    // MARK: - Properties
+
     var configManager: SudoConfigManager!
     
+    // MARK: - Lifecycle
+
     override func setUpWithError() throws {
-        guard let configManager = DefaultSudoConfigManager(bundle: Bundle(for: type(of: self))) else {
-            return XCTFail("Failed to retrieve config manager.")
-        }
-        
-        self.configManager = configManager
+        executionTimeAllowance = 10
+        configManager = try XCTUnwrap(
+            SudoConfigManagerFactory.instance.getConfigManager(name: SudoConfigManagerFactory.Constants.defaultConfigManagerName)
+        )
     }
-    
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
-    
-    func testValidateConfig() async throws {
+
+    // MARK: - Tests
+
+    func test_validateConfig_willThrowErrorWithDeprecatedService() async throws {
         do {
-            try await self.configManager.validateConfig()
+            try await configManager.validateConfig()
+            XCTFail("Validate should not succeed")
         } catch SudoConfigManagerError.compatibilityIssueFound(let incompatible, let deprecated) {
-            if !incompatible.isEmpty {
-                print("\n# Incompatible is not empty: (\(incompatible)")
-            }
             XCTAssertTrue(incompatible.isEmpty)
-            XCTAssertFalse(deprecated.isEmpty)
-        } catch {
-            XCTFail("Failed to validate config: \(error)")
+            XCTAssertEqual(deprecated.map(\.name), ["vcService"])
         }
     }
-    
 }

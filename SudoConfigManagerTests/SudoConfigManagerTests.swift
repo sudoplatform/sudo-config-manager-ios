@@ -4,284 +4,196 @@
 // SPDX-License-Identifier: Apache-2.0
 //
 
-import XCTest
-import SudoLogging
 @testable import SudoConfigManager
-
-class MyS3Client: S3Client {
-    
-    var data: [String: Data] = [:]
-    var keys: [String] = []
-    var error: Error?
-    var getObjectCalled: Bool = false
-    var listObjectsCalled: Bool = false
-    
-    func getObject(key: String) async throws -> Data {
-        self.getObjectCalled = true
-        if let error = self.error {
-            throw error
-        } else {
-            if let data = data[key] {
-                return data
-            } else {
-                throw SudoConfigManagerError.fatalError(description: "Bad test setup.")
-            }
-        }
-    }
-    
-    func listObjects() async throws -> [String] {
-        self.listObjectsCalled = true
-        if let error = self.error {
-            throw error
-        } else {
-            return self.keys
-        }
-    }
-    
-}
+import SudoLogging
+import XCTest
 
 class SudoConfigManagerTests: XCTestCase {
 
+    // MARK: - Properties
+
+    var instanceUnderTest: DefaultSudoConfigManager!
+    var storageServiceMock: StorageServiceMock!
+    var config: [String: Any]!
+
+    // MARK: - Lifecycle
+
     override func setUp() {
-    }
-
-    override func tearDown() {
-    }
-
-    func testConfigManager() {
-        let configManager = DefaultSudoConfigManager()
-        let apiConfig = configManager?.getConfigSet(namespace: "apiService")
-        XCTAssertNotNil(apiConfig)
-        XCTAssertEqual("https://mysudo-dev-api.anonyome.sudoplatform.com/graphql", apiConfig?["apiUrl"] as? String)
-        XCTAssertEqual("us-east-1", apiConfig?["region"] as? String)
-    }
-
-    func testConfigManagerFactory() {
-        var configManager = SudoConfigManagerFactory.instance.getConfigManager(name: SudoConfigManagerFactory.Constants.defaultConfigManagerName)
-        let apiConfig = configManager?.getConfigSet(namespace: "apiService")
-        XCTAssertNotNil(apiConfig)
-        XCTAssertEqual("https://mysudo-dev-api.anonyome.sudoplatform.com/graphql", apiConfig?["apiUrl"] as? String)
-        XCTAssertEqual("us-east-1", apiConfig?["region"] as? String)
-
-        SudoConfigManagerFactory.instance.registerConfigManager(name: "dummy_config", config: ["dummy_namespace": ["dummy_name": "dummy_value"]])
-        configManager = SudoConfigManagerFactory.instance.getConfigManager(name: "dummy_config")
-        let config = configManager?.getConfigSet(namespace: "dummy_namespace")
-        XCTAssertEqual("dummy_value", config?["dummy_name"] as? String)
-    }
-    
-    func testValidateConfig() async {
-        let s3Client = MyS3Client()
-        guard let configManager = DefaultSudoConfigManager(s3Client: s3Client) else {
-            return XCTFail("Failed to initialize config manager.")
-        }
-        
-        // If there's no service info doc the config should validate successfully.
-        do {
-            try await configManager.validateConfig()
-        } catch {
-            XCTFail("Failed to validate config: \(error)")
-        }
-        
-        XCTAssertTrue(s3Client.listObjectsCalled)
-        XCTAssertFalse(s3Client.getObjectCalled)
-        
-        // If service info docs exists but client config does not include
-        // those services then the config should validate sucessfully.
-        s3Client.listObjectsCalled = false
-        s3Client.keys = ["telephonyService.json", "vcService.json"]
-        do {
-            try await configManager.validateConfig()
-        } catch {
-            XCTFail("Failed to validate config: \(error)")
-        }
-        
-        XCTAssertTrue(s3Client.listObjectsCalled)
-        XCTAssertFalse(s3Client.getObjectCalled)
-        
-        // If S3 bucket has non JSON files only then the config should validate
-        // successfully.
-        s3Client.listObjectsCalled = false
-        s3Client.keys = ["identityService.txt", "sudoService"]
-        do {
-            try await configManager.validateConfig()
-        } catch {
-            XCTFail("Failed to validate config: \(error)")
-        }
-        
-        XCTAssertTrue(s3Client.listObjectsCalled)
-        XCTAssertFalse(s3Client.getObjectCalled)
-
-        // If service info docs have lower or same minimum version than the
-        // client config version then the config should validate successfully.
-        s3Client.listObjectsCalled = false
-        s3Client.keys = ["identityService.json", "sudoService.json"]
-        s3Client.data["identityService.json"] = [
-            "identityService": [
-                "minVersion": 1
-            ]
-        ].toJSONData()!
-        s3Client.data["sudoService.json"] = [
+        config = [
             "sudoService": [
-                "minVersion": 2
-            ]
-        ].toJSONData()!
-        
-        do {
-            try await configManager.validateConfig()
-        } catch {
-            XCTFail("Failed to validate config: \(error)")
-        }
-        
-        XCTAssertTrue(s3Client.listObjectsCalled)
-        XCTAssertTrue(s3Client.getObjectCalled)
-        
-        // If service info docs has higher minimum version than the client
-        // config version then the config should fail to validate.
-        s3Client.listObjectsCalled = false
-        s3Client.getObjectCalled = false
-        s3Client.keys = ["identityService.json", "sudoService.json"]
-        s3Client.data["identityService.json"] = [
+                "version": 1
+            ],
             "identityService": [
-                "minVersion": 2
+                "version": 2,
+                "region": "test-region",
+                "serviceInfoBucket": "test-bucket"
             ]
-        ].toJSONData()!
-        s3Client.data["sudoService.json"] = [
-            "sudoService": [
-                "minVersion": 2
-            ]
-        ].toJSONData()!
-        
+        ]
+        storageServiceMock = StorageServiceMock()
+        instanceUnderTest = DefaultSudoConfigManager(config: config, storageService: storageServiceMock, logger: .sudoConfigManagerLogger)
+    }
+
+    // MARK: - Tests: Get Config Set
+
+    func test_getConfigSet_withDefaultManager_willReturnConfigSetFromBundle() {
+        // when
+        let result = instanceUnderTest.getConfigSet(namespace: "sudoService")
+        // then
+        XCTAssertEqual(result as? [String: Int], ["version": 1])
+    }
+
+    // MARK: - Tests: Validate Config
+
+    func test_validateConfig_withNoServiceInfo_willValidateSuccessfully() async throws {
+        // given
+        storageServiceMock.listObjectsResult = .success([])
+        // when
+        try await instanceUnderTest.validateConfig()
+        // then
+        XCTAssertTrue(storageServiceMock.listObjectsCalled)
+        XCTAssertFalse(storageServiceMock.getObjectCalled)
+    }
+
+    func test_validateConfig_withServiceInfo_withServicesMissing_willValidateSuccessfully() async throws {
+        // given
+        storageServiceMock.listObjectsResult = .success(["telephonyService.json", "vcService.json"])
+        // when
+        try await instanceUnderTest.validateConfig()
+        // then
+        XCTAssertTrue(storageServiceMock.listObjectsCalled)
+        XCTAssertFalse(storageServiceMock.getObjectCalled)
+    }
+
+    func test_validateConfig_withOnlyNonJsonFilesInBucket_willValidateSuccessfully() async throws {
+        // given
+        storageServiceMock.listObjectsResult = .success(["identityService.txt", "sudoService"])
+        // when
+        try await instanceUnderTest.validateConfig()
+        // then
+        XCTAssertTrue(storageServiceMock.listObjectsCalled)
+        XCTAssertFalse(storageServiceMock.getObjectCalled)
+    }
+
+    func test_validateConfig_withMinVersionLowerOrEqualToConfigVersion_willValidateSuccessfully() async throws {
+        // given
+        mockConfigInfo([
+            .init(name: "sudoService", configVersion: 1, minSupportedVersion: 1),
+            .init(name: "identityService", configVersion: 2, minSupportedVersion: 1)
+        ])
+        // when
+        try await instanceUnderTest.validateConfig()
+        // then
+        XCTAssertTrue(storageServiceMock.listObjectsCalled)
+        XCTAssertTrue(storageServiceMock.getObjectCalled)
+    }
+
+    func test_validateConfig_withMinVersionHigherThanConfigVersion_willValidateWithError() async throws {
+        // given
+        // given
+        let sudoServiceInfo = ServiceCompatibilityInfo(name: "sudoService", configVersion: 1, minSupportedVersion: 1)
+        let identityServiceInfo = ServiceCompatibilityInfo(name: "identityService", configVersion: 2, minSupportedVersion: 3)
+        mockConfigInfo([sudoServiceInfo, identityServiceInfo])
+        // when
         do {
-            try await configManager.validateConfig()
+            try await instanceUnderTest.validateConfig()
+            XCTFail("Validate should not succeed")
         } catch SudoConfigManagerError.compatibilityIssueFound(let incompatible, let deprecated) {
+            // then
             XCTAssertEqual(1, incompatible.count)
             XCTAssertEqual(0, deprecated.count)
-            let compatibilityInfo = incompatible.first
-            XCTAssertNotNil(compatibilityInfo)
-            XCTAssertEqual("identityService", compatibilityInfo?.name)
-            XCTAssertEqual(1, compatibilityInfo?.configVersion)
-            XCTAssertEqual(2, compatibilityInfo?.minSupportedVersion)
-            XCTAssertNil(compatibilityInfo?.deprecatedVersion)
-            XCTAssertNil(compatibilityInfo?.deprecationGrace)
-        } catch {
-            XCTFail("Failed to validate config: \(error)")
+            let incompatibleIdentityServiceInfo = try XCTUnwrap(incompatible.first(where: { $0.name == "identityService" }))
+            XCTAssertEqual(incompatibleIdentityServiceInfo, identityServiceInfo)
         }
-        
-        XCTAssertTrue(s3Client.listObjectsCalled)
-        XCTAssertTrue(s3Client.getObjectCalled)
-        
-        s3Client.listObjectsCalled = false
-        s3Client.getObjectCalled = false
-        s3Client.keys = ["identityService.json", "sudoService.json"]
-        s3Client.data["identityService.json"] = [
-            "identityService": [
-                "minVersion": 2
-            ]
-        ].toJSONData()!
-        s3Client.data["sudoService.json"] = [
-            "sudoService": [
-                "minVersion": 3
-            ]
-        ].toJSONData()!
-        
-        do {
-            try await configManager.validateConfig()
-        } catch SudoConfigManagerError.compatibilityIssueFound(let incompatible, let deprecated) {
-            XCTAssertEqual(2, incompatible.count)
-            XCTAssertEqual(0, deprecated.count)
-            var found = 0
-            for compatibilityInfo in incompatible {
-                if compatibilityInfo.name == "identityService",
-                   compatibilityInfo.configVersion == 1,
-                   compatibilityInfo.minSupportedVersion == 2,
-                   compatibilityInfo.deprecatedVersion == nil,
-                   compatibilityInfo.deprecationGrace == nil {
-                    found += 1
-                } else if compatibilityInfo.name == "sudoService",
-                   compatibilityInfo.configVersion == 2,
-                   compatibilityInfo.minSupportedVersion == 3,
-                   compatibilityInfo.deprecatedVersion == nil,
-                   compatibilityInfo.deprecationGrace == nil {
-                    found += 1
-                }
-            }
-            XCTAssertEqual(2, found)
-        } catch {
-            XCTFail("Failed to validate config: \(error)")
-        }
-        
-        XCTAssertTrue(s3Client.listObjectsCalled)
-        XCTAssertTrue(s3Client.getObjectCalled)
-        
-        // If service info docs have lower deprecated version than the client
-        // config version then the config should validate successfully.
-        s3Client.listObjectsCalled = false
-        s3Client.keys = ["identityService.json", "sudoService.json"]
-        s3Client.data["identityService.json"] = [
-            "identityService": [
-                "minVersion": 1
-            ]
-        ].toJSONData()!
-        s3Client.data["sudoService.json"] = [
-            "sudoService": [
-                "deprecated": 1
-            ]
-        ].toJSONData()!
-        
-        do {
-            try await configManager.validateConfig()
-        } catch {
-            XCTFail("Failed to validate config: \(error)")
-        }
-        
-        XCTAssertTrue(s3Client.listObjectsCalled)
-        XCTAssertTrue(s3Client.getObjectCalled)
-        
-        // If service info docs have same or higher deprecated version than the
-        // client config version then the config should fail to validate.
-        s3Client.listObjectsCalled = false
-        s3Client.keys = ["identityService.json", "sudoService.json"]
-        s3Client.data["identityService.json"] = [
-            "identityService": [
-                "deprecated": 1,
-                "deprecationGrace": 1000
-            ]
-        ].toJSONData()!
-        s3Client.data["sudoService.json"] = [
-            "sudoService": [
-                "minVersion": 1,
-                "deprecated": 3,
-                "deprecationGrace": 2000
-            ]
-        ].toJSONData()!
-        
-        do {
-            try await configManager.validateConfig()
-        } catch SudoConfigManagerError.compatibilityIssueFound(let incompatible, let deprecated) {
-            XCTAssertEqual(0, incompatible.count)
-            XCTAssertEqual(2, deprecated.count)
-            var found = 0
-            for compatibilityInfo in deprecated {
-                if compatibilityInfo.name == "identityService",
-                   compatibilityInfo.configVersion == 1,
-                   compatibilityInfo.deprecatedVersion == 1,
-                   compatibilityInfo.deprecationGrace == Date(timeIntervalSince1970: 1) {
-                    found += 1
-                } else if compatibilityInfo.name == "sudoService",
-                   compatibilityInfo.configVersion == 2,
-                   compatibilityInfo.minSupportedVersion == 1,
-                   compatibilityInfo.deprecatedVersion == 3,
-                   compatibilityInfo.deprecationGrace == Date(timeIntervalSince1970: 2) {
-                    found += 1
-                }
-            }
-            XCTAssertEqual(2, found)
-        } catch {
-            XCTFail("Failed to validate config: \(error)")
-        }
-        
-        XCTAssertTrue(s3Client.listObjectsCalled)
-        XCTAssertTrue(s3Client.getObjectCalled)
+        XCTAssertTrue(storageServiceMock.listObjectsCalled)
+        XCTAssertTrue(storageServiceMock.getObjectCalled)
     }
 
+    func test_validateConfig_withMultipleMinVersionHigherThanConfigVersion_willValidateWithError() async throws {
+        // given
+        let sudoServiceInfo = ServiceCompatibilityInfo(name: "sudoService", configVersion: 1, minSupportedVersion: 2)
+        let identityServiceInfo = ServiceCompatibilityInfo(name: "identityService", configVersion: 2, minSupportedVersion: 3)
+        mockConfigInfo([sudoServiceInfo, identityServiceInfo])
+        // when
+        do {
+            try await instanceUnderTest.validateConfig()
+            XCTFail("Validate should not succeed")
+        } catch SudoConfigManagerError.compatibilityIssueFound(let incompatible, let deprecated) {
+            // then
+            XCTAssertEqual(2, incompatible.count)
+            XCTAssertEqual(0, deprecated.count)
+            let incompatibleIdentityServiceInfo = try XCTUnwrap(incompatible.first(where: { $0.name == "identityService" }))
+            let incompatibleSudoServiceInfo = try XCTUnwrap(incompatible.first(where: { $0.name == "sudoService" }))
+            XCTAssertEqual(incompatibleSudoServiceInfo,sudoServiceInfo)
+            XCTAssertEqual(incompatibleIdentityServiceInfo, identityServiceInfo)
+        }
+        XCTAssertTrue(storageServiceMock.listObjectsCalled)
+        XCTAssertTrue(storageServiceMock.getObjectCalled)
+    }
+
+    func test_validateConfig_withDeprecatedVersionLowerThanConfigVersion_willValidateSuccessfully() async throws {
+        // given
+        mockConfigInfo([
+            .init(name: "sudoService", configVersion: 1, minSupportedVersion: 0, deprecatedVersion: 0),
+            .init(name: "identityService", configVersion: 2, minSupportedVersion: 1, deprecatedVersion: 1)
+        ])
+        // when
+        try await instanceUnderTest.validateConfig()
+        // then
+        XCTAssertTrue(storageServiceMock.listObjectsCalled)
+        XCTAssertTrue(storageServiceMock.getObjectCalled)
+    }
+
+    func test_validateConfig_withDeprecatedVersionHigherOrEqualToConfigVersion_willValidateWithError() async throws {
+        // given
+        let sudoServiceInfo = ServiceCompatibilityInfo(
+            name: "sudoService",
+            configVersion: 1,
+            deprecatedVersion: 1,
+            deprecationGrace: Date(timeIntervalSince1970: 1)
+        )
+        let identityServiceInfo = ServiceCompatibilityInfo(
+            name: "identityService",
+            configVersion: 2,
+            minSupportedVersion: 1,
+            deprecatedVersion: 3,
+            deprecationGrace: Date(timeIntervalSince1970: 2)
+        )
+        mockConfigInfo([sudoServiceInfo, identityServiceInfo])
+        // when
+        do {
+            try await instanceUnderTest.validateConfig()
+            XCTFail("Validate should not succeed")
+        } catch SudoConfigManagerError.compatibilityIssueFound(let incompatible, let deprecated) {
+            // then
+            XCTAssertEqual(0, incompatible.count)
+            XCTAssertEqual(2, deprecated.count)
+            let deprecatedIdentityServiceInfo = try XCTUnwrap(deprecated.first(where: { $0.name == "identityService" }))
+            let deprecatedSudoServiceInfo = try XCTUnwrap(deprecated.first(where: { $0.name == "sudoService" }))
+            XCTAssertEqual(deprecatedIdentityServiceInfo, identityServiceInfo)
+            XCTAssertEqual(deprecatedSudoServiceInfo, sudoServiceInfo)
+        }
+        XCTAssertTrue(storageServiceMock.listObjectsCalled)
+        XCTAssertTrue(storageServiceMock.getObjectCalled)
+    }
+
+    // MARK: - Helpers
+
+    func mockConfigInfo(_ info: [ServiceCompatibilityInfo]) {
+        let keysAndResults: [(String, Result<Data, URLError>)] = info.map {
+            var versionMap: [String: Int] = [:]
+            if let minVersion = $0.minSupportedVersion {
+                versionMap["minVersion"] = minVersion
+            }
+            if let deprecatedVersion = $0.deprecatedVersion {
+                versionMap["deprecated"] = deprecatedVersion
+            }
+            if let deprecationGrace = $0.deprecationGrace {
+                versionMap["deprecationGrace"] = deprecationGrace.millisecondsSinceEpoch
+            }
+            let data = [$0.name: versionMap].toJSONData()
+            return ("\($0.name).json", .success(data!))
+        }
+        storageServiceMock.listObjectsResult = .success(keysAndResults.map { $0.0 })
+        storageServiceMock.getObjectResultMap = Dictionary(keysAndResults, uniquingKeysWith: { lhs, _ in lhs })
+    }
 }

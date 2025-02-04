@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		413A55C62D4C845F0051A90A /* StorageServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 413A55C52D4C845F0051A90A /* StorageServiceMock.swift */; };
+		413A55C82D4C84AF0051A90A /* SudoConfigManagerFactoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 413A55C72D4C84AF0051A90A /* SudoConfigManagerFactoryTests.swift */; };
+		41D206B42D50AC46009A719E /* S3ListObjectsParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41D206B32D50AC46009A719E /* S3ListObjectsParserTests.swift */; };
+		41D206B62D50B93D009A719E /* S3ListObjectsParserMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41D206B52D50B93D009A719E /* S3ListObjectsParserMock.swift */; };
+		41D206B82D50B9ED009A719E /* StorageServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41D206B72D50B9ED009A719E /* StorageServiceTests.swift */; };
+		41D206BA2D50BB26009A719E /* URLSessionMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41D206B92D50BB26009A719E /* URLSessionMock.swift */; };
+		41D206BF2D517C20009A719E /* NSLock+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41D206BE2D517C1F009A719E /* NSLock+Extensions.swift */; };
 		D931C7B92342D22700932612 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D931C7B82342D22700932612 /* AppDelegate.swift */; };
 		D931C7BB2342D22700932612 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D931C7BA2342D22700932612 /* ViewController.swift */; };
 		D931C7BE2342D22700932612 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D931C7BC2342D22700932612 /* Main.storyboard */; };
@@ -37,7 +44,19 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		D91AD5D72787A56800006210 /* Dictionary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dictionary.swift; sourceTree = "<group>"; };
+		413A55C02D4C54BF0051A90A /* ServiceCompatibilityInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceCompatibilityInfo.swift; sourceTree = "<group>"; };
+		413A55C22D4C56D50051A90A /* SudoConfigManagerFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SudoConfigManagerFactory.swift; sourceTree = "<group>"; };
+		413A55C52D4C845F0051A90A /* StorageServiceMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StorageServiceMock.swift; sourceTree = "<group>"; };
+		413A55C72D4C84AF0051A90A /* SudoConfigManagerFactoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SudoConfigManagerFactoryTests.swift; sourceTree = "<group>"; };
+		41D206B22D50A282009A719E /* S3ListObjectsParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = S3ListObjectsParser.swift; sourceTree = "<group>"; };
+		41D206B32D50AC46009A719E /* S3ListObjectsParserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = S3ListObjectsParserTests.swift; sourceTree = "<group>"; };
+		41D206B52D50B93D009A719E /* S3ListObjectsParserMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = S3ListObjectsParserMock.swift; sourceTree = "<group>"; };
+		41D206B72D50B9ED009A719E /* StorageServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageServiceTests.swift; sourceTree = "<group>"; };
+		41D206B92D50BB26009A719E /* URLSessionMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionMock.swift; sourceTree = "<group>"; };
+		41D206BC2D50BE5A009A719E /* URLSessionProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionProtocol.swift; sourceTree = "<group>"; };
+		41D206BE2D517C1F009A719E /* NSLock+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSLock+Extensions.swift"; sourceTree = "<group>"; };
+		41D206C22D517C83009A719E /* SudoConfigManagerError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SudoConfigManagerError.swift; sourceTree = "<group>"; };
+		D91AD5D72787A56800006210 /* Dictionary+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Dictionary+Extensions.swift"; sourceTree = "<group>"; };
 		D931C7B62342D22700932612 /* TestApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TestApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D931C7B82342D22700932612 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D931C7BA2342D22700932612 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -45,19 +64,15 @@
 		D931C7BF2342D22800932612 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D931C7C22342D22800932612 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D931C7C42342D22800932612 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		D931C7CA2342D3D000932612 /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
+		D931C7CA2342D3D000932612 /* Data+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+Extensions.swift"; sourceTree = "<group>"; };
 		D967447E278667AE00A3469C /* SudoConfigManagerIntegrationTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SudoConfigManagerIntegrationTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D9674480278667AE00A3469C /* SudoConfigManagerIntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SudoConfigManagerIntegrationTests.swift; sourceTree = "<group>"; };
-		D967448E2786817800A3469C /* NSLock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSLock.swift; sourceTree = "<group>"; };
-		D967449427869B9800A3469C /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
-		D96744972786A7EE00A3469C /* S3Client.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = S3Client.swift; sourceTree = "<group>"; };
-		D97611D52785139700E9D6C5 /* AWSEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AWSEndpoint.swift; sourceTree = "<group>"; };
-		D9971C5B22FD299A0077076C /* SudoConfigManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SudoConfigManager.h; sourceTree = "<group>"; };
-		D9971C5C22FD299A0077076C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D967449427869B9800A3469C /* Date+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extensions.swift"; sourceTree = "<group>"; };
+		D96744972786A7EE00A3469C /* StorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageService.swift; sourceTree = "<group>"; };
 		D9971C6122FD299A0077076C /* SudoConfigManagerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SudoConfigManagerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D9971C6622FD299A0077076C /* SudoConfigManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SudoConfigManagerTests.swift; sourceTree = "<group>"; };
 		D9971C6822FD299A0077076C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		D9971C7D22FD46650077076C /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
+		D9971C7D22FD46650077076C /* Logger+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Logger+Extensions.swift"; sourceTree = "<group>"; };
 		D9FD3DB823D69AFE00781D80 /* SudoConfigManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SudoConfigManager.swift; sourceTree = "<group>"; };
 		D9FD3DC223D6A2BC00781D80 /* sudoplatformconfig.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = sudoplatformconfig.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -89,6 +104,53 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		413A55C12D4C555E0051A90A /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				413A55C02D4C54BF0051A90A /* ServiceCompatibilityInfo.swift */,
+				41D206C22D517C83009A719E /* SudoConfigManagerError.swift */,
+			);
+			name = Entities;
+			sourceTree = "<group>";
+		};
+		413A55C42D4C84500051A90A /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				413A55C52D4C845F0051A90A /* StorageServiceMock.swift */,
+				41D206B52D50B93D009A719E /* S3ListObjectsParserMock.swift */,
+				41D206B92D50BB26009A719E /* URLSessionMock.swift */,
+			);
+			path = Mocks;
+			sourceTree = "<group>";
+		};
+		41D206BB2D50BE4E009A719E /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				41D206BC2D50BE5A009A719E /* URLSessionProtocol.swift */,
+			);
+			name = Protocols;
+			sourceTree = "<group>";
+		};
+		41D206C02D517C40009A719E /* Internal */ = {
+			isa = PBXGroup;
+			children = (
+				41D206BB2D50BE4E009A719E /* Protocols */,
+				D96744962786A7D700A3469C /* Util */,
+				D9971C7A22FD41090077076C /* Extension */,
+			);
+			name = Internal;
+			sourceTree = "<group>";
+		};
+		41D206C12D517C46009A719E /* Public */ = {
+			isa = PBXGroup;
+			children = (
+				413A55C12D4C555E0051A90A /* Entities */,
+				D9FD3DB823D69AFE00781D80 /* SudoConfigManager.swift */,
+				413A55C22D4C56D50051A90A /* SudoConfigManagerFactory.swift */,
+			);
+			name = Public;
+			sourceTree = "<group>";
+		};
 		C1CFCFDA6A8EDCBA54AF85D7 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -122,7 +184,8 @@
 		D96744962786A7D700A3469C /* Util */ = {
 			isa = PBXGroup;
 			children = (
-				D96744972786A7EE00A3469C /* S3Client.swift */,
+				D96744972786A7EE00A3469C /* StorageService.swift */,
+				41D206B22D50A282009A719E /* S3ListObjectsParser.swift */,
 			);
 			name = Util;
 			sourceTree = "<group>";
@@ -153,12 +216,8 @@
 		D9971C5A22FD299A0077076C /* SudoConfigManager */ = {
 			isa = PBXGroup;
 			children = (
-				D96744962786A7D700A3469C /* Util */,
-				D9971C7A22FD41090077076C /* Extension */,
-				D9971C5B22FD299A0077076C /* SudoConfigManager.h */,
-				D9971C5C22FD299A0077076C /* Info.plist */,
-				D9971C7D22FD46650077076C /* Logger.swift */,
-				D9FD3DB823D69AFE00781D80 /* SudoConfigManager.swift */,
+				41D206C12D517C46009A719E /* Public */,
+				41D206C02D517C40009A719E /* Internal */,
 			);
 			path = SudoConfigManager;
 			sourceTree = "<group>";
@@ -166,7 +225,10 @@
 		D9971C6522FD299A0077076C /* SudoConfigManagerTests */ = {
 			isa = PBXGroup;
 			children = (
-				D9FD3DBC23D69F5400781D80 /* Supporting Files */,
+				413A55C42D4C84500051A90A /* Mocks */,
+				41D206B32D50AC46009A719E /* S3ListObjectsParserTests.swift */,
+				41D206B72D50B9ED009A719E /* StorageServiceTests.swift */,
+				413A55C72D4C84AF0051A90A /* SudoConfigManagerFactoryTests.swift */,
 				D9971C6622FD299A0077076C /* SudoConfigManagerTests.swift */,
 				D9971C6822FD299A0077076C /* Info.plist */,
 			);
@@ -176,21 +238,13 @@
 		D9971C7A22FD41090077076C /* Extension */ = {
 			isa = PBXGroup;
 			children = (
-				D931C7CA2342D3D000932612 /* Data.swift */,
-				D97611D52785139700E9D6C5 /* AWSEndpoint.swift */,
-				D967448E2786817800A3469C /* NSLock.swift */,
-				D967449427869B9800A3469C /* Date.swift */,
-				D91AD5D72787A56800006210 /* Dictionary.swift */,
+				41D206BE2D517C1F009A719E /* NSLock+Extensions.swift */,
+				D931C7CA2342D3D000932612 /* Data+Extensions.swift */,
+				D967449427869B9800A3469C /* Date+Extensions.swift */,
+				D91AD5D72787A56800006210 /* Dictionary+Extensions.swift */,
+				D9971C7D22FD46650077076C /* Logger+Extensions.swift */,
 			);
 			name = Extension;
-			sourceTree = "<group>";
-		};
-		D9FD3DBC23D69F5400781D80 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = "Supporting Files";
-			path = resources;
 			sourceTree = "<group>";
 		};
 		D9FD3DC123D6A27C00781D80 /* Supporting Files */ = {
@@ -223,6 +277,8 @@
 			dependencies = (
 			);
 			name = TestApp;
+			packageProductDependencies = (
+			);
 			productName = TestApp;
 			productReference = D931C7B62342D22700932612 /* TestApp.app */;
 			productType = "com.apple.product-type.application";
@@ -284,6 +340,7 @@
 					};
 					D967447D278667AE00A3469C = {
 						CreatedOnToolsVersion = 13.2.1;
+						TestTargetID = D931C7B52342D22700932612;
 					};
 					D9971C6022FD299A0077076C = {
 						CreatedOnToolsVersion = 10.3;
@@ -300,6 +357,8 @@
 				Base,
 			);
 			mainGroup = D9971C4E22FD299A0077076C;
+			packageReferences = (
+			);
 			productRefGroup = D9971C5922FD299A0077076C /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -382,6 +441,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				D9971C6722FD299A0077076C /* SudoConfigManagerTests.swift in Sources */,
+				41D206BF2D517C20009A719E /* NSLock+Extensions.swift in Sources */,
+				41D206B82D50B9ED009A719E /* StorageServiceTests.swift in Sources */,
+				41D206B42D50AC46009A719E /* S3ListObjectsParserTests.swift in Sources */,
+				41D206B62D50B93D009A719E /* S3ListObjectsParserMock.swift in Sources */,
+				413A55C62D4C845F0051A90A /* StorageServiceMock.swift in Sources */,
+				413A55C82D4C84AF0051A90A /* SudoConfigManagerFactoryTests.swift in Sources */,
+				41D206BA2D50BB26009A719E /* URLSessionMock.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -481,6 +547,7 @@
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TestApp.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/TestApp";
 			};
 			name = Debug;
 		};
@@ -503,6 +570,7 @@
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TestApp.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/TestApp";
 			};
 			name = Release;
 		};

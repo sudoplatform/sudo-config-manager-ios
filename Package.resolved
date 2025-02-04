@@ -1,21 +1,12 @@
 {
   "pins" : [
     {
-      "identity" : "aws-sdk-ios-spm",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/aws-amplify/aws-sdk-ios-spm",
-      "state" : {
-        "revision" : "048ba8f55deb04dd399c0c3a61b4addf54e0c36b",
-        "version" : "2.36.7"
-      }
-    },
-    {
       "identity" : "sudo-logging-ios",
       "kind" : "remoteSourceControl",
-      "location" : "git@gitlab.tools.anonyome.com:platform/client-common/sudo-logging-ios.git",
+      "location" : "https://github.com/sudoplatform/sudo-logging-ios",
       "state" : {
-        "branch" : "swift-package-manager",
-        "revision" : "7735faec0664ff12cfd19efce361693929aee087"
+        "revision" : "c1de608ee27bc133cf9657af9c290aa17ec3f133",
+        "version" : "2.0.0"
       }
     }
   ],

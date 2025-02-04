@@ -3,24 +3,87 @@
     "version": 1,
     "region": "us-east-1",
     "poolId": "us-east-1_xdfc8z76Y",
-    "clientId": "7i3jocnqkg3jch3gtld203qsap",
-    "identityPoolId": "us-east-1:a5031c5c-51cd-451b-9642-d761bd68a979",
-    "apiUrl": "https://mysudo-dev-id.anonyome.sudoplatform.com/graphql",
-    "apiKey": "da2-na33zdlnjvgyflnsllx55yv25e",
-    "bucket": "ids-core-mysudo-dev-userdatabucket2d841c35-jg82wviba404",
-    "serviceInfoBucket": "ids-core-mysudo-dev-userdatabucket2d841c35-jg82wviba404"
+    "clientId": "72iaggq87hg98dtfsp3or21lr7",
+    "refreshTokenLifetime": 1,
+    "identityPoolId": "us-east-1:12094ec6-dbd8-40d8-9957-5751cc53a3f1",
+    "apiUrl": "https://m6do3qiqa5bkhahcqdap2yaltq.appsync-api.us-east-1.amazonaws.com/graphql",
+    "apiKey": "da2-xejsa343urfifmzkycmz3rqdom",
+    "bucket": "ids-userdata-mysudo-dev-userdatabucket2d841c35-1op0op62sba0q",
+    "transientBucket": "ids-userdata-mysudo-dev-transientuserdatabucket0d-3u4ikp3svfok",
+    "staticDataBucket": "ids-staticdata-mysudo-de-staticdatabucket89bd4eab-1sugn364orf12",
+    "serviceInfoBucket": "ids-data-mysudo-dev-serviceinfobucketcf6c8b79-5ddo81wdcqq5",
+    "registrationMethods": [
+      "TEST",
+      "FSSO"
+    ],
+    "customFSSOUserIdAttributes": "sub"
   },
   "apiService": {
-    "apiUrl": "https://mysudo-dev-api.anonyome.sudoplatform.com/graphql",
-    "region": "us-east-1"
+    "apiUrl": "https://zz4syukdwffc3npfiddjtsemou.appsync-api.us-east-1.amazonaws.com/graphql",
+    "simulatorApiUrl": "https://tzvweaixwjbqxezdnq7ylhqyme.appsync-api.us-east-1.amazonaws.com/graphql",
+    "region": "us-east-1",
+    "instanceName": "mysudo-dev"
   },
   "sudoService": {
-    "version": 2,
-    "apiUrl": "https://mysudo-dev-api.anonyome.sudoplatform.com/graphql",
-    "region": "us-east-1"
+    "region": "us-east-1",
+    "bucket": "ss-bkt-mysudo-dev-blobclaim0rw0u0bucket4aa18776-1fuc6h3xswuk1"
   },
   "IdentityVerificationService": {
     "region": "us-east-1",
-    "apiUrl": "https://mysudo-dev-api.anonyome.sudoplatform.com/graphql"
+    "apiUrl": "https://zz4syukdwffc3npfiddjtsemou.appsync-api.us-east-1.amazonaws.com/graphql"
+  },
+  "vcService": {
+    "version": 2,
+    "apiUrl": "https://zz4syukdwffc3npfiddjtsemou.appsync-api.us-east-1.amazonaws.com/graphql",
+    "region": "us-east-1"
+  },
+  "vcSimulator": {
+    "apiUrl": "https://tzvweaixwjbqxezdnq7ylhqyme.appsync-api.us-east-1.amazonaws.com/graphql",
+    "apiKey": "da2-c2fvp2eirrbuhg6nwsm44dfgmm",
+    "region": "us-east-1"
+  },
+  "adminConsoleProjectService": {
+    "region": "us-east-1",
+    "apiUrl": "https://wk4ienmpgrgm3jnixxzf5zybfy.appsync-api.us-east-1.amazonaws.com/graphql",
+    "userPoolId": "us-east-1_kiNADKE4j",
+    "clientId": "6tu783ek00brjtb561fpceksi8"
+  },
+  "entitlementsService": {
+    "redeemOnUserRegistration": true
+  },
+  "vpnService": {},
+  "ctLogListService": {
+    "logListUrl": "https://cls-web-mysudo-dev-loglistbucketd08fa0f7-1s5isvqcy1642.s3.amazonaws.com"
+  },
+  "emService": {
+    "apiUrl": "https://zz4syukdwffc3npfiddjtsemou.appsync-api.us-east-1.amazonaws.com/graphql",
+    "region": "us-east-1",
+    "bucket": "ems-bkt-mysudo-dev-email0rw0u0bucket48ad7413-g2gwj3hjdn4z",
+    "transientBucket": "ems-bkt-mysudo-dev-tmp0rw0u0bucket8afd5eec-sp7l3d0szd6u",
+    "notifiable": true
+  },
+  "emailMigrationService": {
+    "region": "us-east-1",
+    "apiUrl": "https://lyz75mdolvdntiqjwevnsula3a.appsync-api.us-east-1.amazonaws.com/graphql",
+    "bucket": "ets-data-mysudo-dev-emails0rw0u0bucket9ba5062f-gwwch19mopg2"
+  },
+  "notificationService": {
+    "region": "us-east-1",
+    "apiUrl": "https://zz4syukdwffc3npfiddjtsemou.appsync-api.us-east-1.amazonaws.com/graphql"
+  },
+  "siteReputationService": {
+    "region": "us-east-1",
+    "bucket": "srs-s3-mysudo-dev-static0r0a0bucketebb21caf-crwtm1px621t"
+  },
+  "adTrackerBlockerService": {
+    "region": "us-east-1",
+    "bucket": "atb-s3-mysudo-dev-static0r0a0bucketebb21caf-52mf6sqgpubu"
+  },
+  "secureVaultService": {
+    "region": "us-east-1",
+    "poolId": "us-east-1_8slS8cmGH",
+    "clientId": "39cdgfckusc37a4fbg95og3p6b",
+    "apiUrl": "https://5ligtfxmajc4nk3voghhtqddwq.appsync-api.us-east-1.amazonaws.com/graphql",
+    "pbkdfRounds": 100000
   }
 }

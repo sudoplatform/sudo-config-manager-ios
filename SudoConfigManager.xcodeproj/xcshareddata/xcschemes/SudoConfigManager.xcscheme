@@ -47,10 +47,10 @@
       <CodeCoverageTargets>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "D9971C5722FD299A0077076C"
-            BuildableName = "SudoConfigManager.framework"
+            BlueprintIdentifier = "SudoConfigManager"
+            BuildableName = "SudoConfigManager"
             BlueprintName = "SudoConfigManager"
-            ReferencedContainer = "container:SudoConfigManager.xcodeproj">
+            ReferencedContainer = "container:">
          </BuildableReference>
       </CodeCoverageTargets>
       <Testables>
