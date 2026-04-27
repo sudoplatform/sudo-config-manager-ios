@@ -8,7 +8,7 @@ import Foundation
 import SudoLogging
 
 /// An abstraction layer on top of AWS S3 SDK.
-protocol StorageService: AnyObject {
+protocol StorageService: AnyObject, Sendable {
 
     /// Retrieves a S3 object.
     /// - Parameter key: S3 key associated with the object.
@@ -24,7 +24,7 @@ protocol StorageService: AnyObject {
 }
 
 /// Default S3 client implementation.
-class DefaultStorageService: StorageService {
+final class DefaultStorageService: StorageService, Sendable {
 
     // MARK: - Properties
 
@@ -38,7 +38,7 @@ class DefaultStorageService: StorageService {
     let urlSession: URLSessionProtocol
 
     /// A closure that returns a utility for parsing the response from a list objects request.
-    let resolveListObjectsParser: () -> S3ListObjectsParser
+    let resolveListObjectsParser: @Sendable () -> S3ListObjectsParser
 
     /// A logging instance.
     let logger: SudoLogging.Logger
@@ -57,7 +57,7 @@ class DefaultStorageService: StorageService {
         region: String,
         bucket: String,
         urlSession: URLSessionProtocol = URLSession.shared,
-        resolveListObjectsParser: @escaping () -> S3ListObjectsParser = { DefaultS3ListObjectsParser() },
+        resolveListObjectsParser: @escaping @Sendable () -> S3ListObjectsParser = { DefaultS3ListObjectsParser() },
         logger: Logger = Logger.sudoConfigManagerLogger
     ) {
         self.region = region

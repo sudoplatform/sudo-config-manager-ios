@@ -1,14 +1,15 @@
 {
+  "originHash" : "a9c7837a9e0ad9606172c81fcab087f924aaea88801c269aae915e548e490ecb",
   "pins" : [
     {
       "identity" : "sudo-logging-ios",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/sudoplatform/sudo-logging-ios",
       "state" : {
-        "revision" : "c1de608ee27bc133cf9657af9c290aa17ec3f133",
-        "version" : "2.0.0"
+        "revision" : "584aef22ef0d9b6ee66134bb35a10087a6659072",
+        "version" : "3.0.0"
       }
     }
   ],
-  "version" : 2
+  "version" : 3
 }

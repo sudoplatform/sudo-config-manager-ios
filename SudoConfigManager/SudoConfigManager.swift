@@ -11,7 +11,7 @@ import SudoLogging
 /// A configuration manager is responsible for locating the platform configuration file (sudoplatformconfig.json)
 /// in the app bundle, parsing it and returning the configuration set specific to a given namespace.
 /// Use the `SudoConfigManagerFactory` to resolve an instance.
-public protocol SudoConfigManager: AnyObject {
+public protocol SudoConfigManager: AnyObject, Sendable {
 
     /// Returns the configuration set under the specified namespace.
     /// - Parameter namespace: Configuration namespace.
@@ -27,12 +27,12 @@ public protocol SudoConfigManager: AnyObject {
 }
 
 /// Default `SudoConfigManager` implementation.
-class DefaultSudoConfigManager: SudoConfigManager {
+final class DefaultSudoConfigManager: SudoConfigManager, Sendable {
 
     // MARK: - Properties
 
     /// Contains the service version numbers which are validated by this manager.
-    let config: [String: Any]
+    let config: SudoConfigManagerConfig
 
     /// The utility responsible for downloading the service compatibility information.
     let storageService: StorageService
@@ -48,7 +48,7 @@ class DefaultSudoConfigManager: SudoConfigManager {
     ///   - storageService: The service for fetching the service compatibility info.
     ///   - logger: A logging instance.
     init(config: [String: Any], storageService: StorageService, logger: Logger) {
-        self.config = config
+        self.config = SudoConfigManagerConfig(config)
         self.storageService = storageService
         self.logger = logger
     }
@@ -56,7 +56,7 @@ class DefaultSudoConfigManager: SudoConfigManager {
     // MARK: - Conformance: SudoConfigManager
 
     public func getConfigSet(namespace: String) -> [String: Any]? {
-        config[namespace] as? [String: Any]
+        config[namespace]
     }
 
     public func validateConfig() async throws {
@@ -76,13 +76,9 @@ class DefaultSudoConfigManager: SudoConfigManager {
                 guard let compatibilityInfo = result else {
                     continue
                 }
-                // If the service config in `sudoplatformconfig.json` is less than the
-                // minimum supported version then the client is incompatible.
                 if compatibilityInfo.configVersion < (compatibilityInfo.minSupportedVersion ?? 0) {
                     incompatible.append(compatibilityInfo)
                 }
-                // If the service config is less than or equal to the deprecated version
-                // then it will be made incompatible after the deprecation grace.
                 if compatibilityInfo.configVersion <= (compatibilityInfo.deprecatedVersion ?? 0) {
                     deprecated.append(compatibilityInfo)
                 }
@@ -103,7 +99,7 @@ class DefaultSudoConfigManager: SudoConfigManager {
         guard
             let serviceName = jsonObject.keys.first,
             let serviceInfo = jsonObject[serviceName] as? [String: Any],
-            let serviceConfig = config[serviceName] as? [String: Any]
+            let serviceConfig = config[serviceName]
         else {
             return nil
         }

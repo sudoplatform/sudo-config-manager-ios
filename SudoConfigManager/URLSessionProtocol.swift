@@ -7,7 +7,7 @@
 import Foundation
 
 /// Protocol wrapping the Foundation URLSession protocol to facilitate easier unit testing.
-protocol URLSessionProtocol: AnyObject {
+protocol URLSessionProtocol: AnyObject, Sendable {
 
     /// Convenience method to load data using a URLRequest, creates and resumes a URLSessionDataTask internally.
     /// - Parameter request: The URLRequest for which to load data.

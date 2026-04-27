@@ -24,7 +24,8 @@ class SudoConfigManagerFactoryTests: XCTestCase {
 
     func test_init_willRegisterDefaultSudoConfigManager() {
         // then
-        XCTAssertNotNil(instanceUnderTest.configManagers[SudoConfigManagerFactory.Constants.defaultConfigManagerName])
+        let manager = instanceUnderTest.getConfigManager(name: SudoConfigManagerFactory.Constants.defaultConfigManagerName)
+        XCTAssertNotNil(manager)
     }
 
     // MARK: - Tests: Get Config Manager

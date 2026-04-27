@@ -7,7 +7,7 @@
 import Foundation
 @testable import SudoConfigManager
 
-class URLSessionMock: URLSessionProtocol {
+class URLSessionMock: URLSessionProtocol, @unchecked Sendable {
 
     var dataForRequestCalled = false
     var dataForRequestCallCount = 0

@@ -7,7 +7,7 @@
 import Foundation
 @testable import SudoConfigManager
 
-class StorageServiceMock: StorageService {
+class StorageServiceMock: StorageService, @unchecked Sendable {
 
     var getObjectCalled: Bool = false
     var getObjectResult: Result<Data, URLError> = .failure(URLError(.dataNotAllowed))

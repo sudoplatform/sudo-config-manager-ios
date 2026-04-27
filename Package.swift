@@ -1,10 +1,10 @@
-// swift-tools-version: 5.7
+// swift-tools-version: 6.0
 import PackageDescription
 
 let package = Package(
     name: "SudoConfigManager",
     platforms: [
-        .iOS(.v15),
+        .iOS(.v18),
     ],
     products: [
         .library(
@@ -13,7 +13,7 @@ let package = Package(
         ),
     ],
     dependencies: [
-        .package(url: "https://github.com/sudoplatform/sudo-logging-ios", from: "2.0.0"),
+        .package(url: "https://github.com/sudoplatform/sudo-logging-ios", from: "3.0.0"),
     ],
     targets: [
         .target(
@@ -21,7 +21,8 @@ let package = Package(
             dependencies: [
                 .product(name: "SudoLogging", package: "sudo-logging-ios")
             ],
-            path: "SudoConfigManager"
+            path: "SudoConfigManager",
+            swiftSettings: [.swiftLanguageMode(.v5)],
         ),
     ]
 )

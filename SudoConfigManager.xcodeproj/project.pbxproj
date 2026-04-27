@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 54;
+	objectVersion = 90;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -13,7 +13,6 @@
 		41D206B62D50B93D009A719E /* S3ListObjectsParserMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41D206B52D50B93D009A719E /* S3ListObjectsParserMock.swift */; };
 		41D206B82D50B9ED009A719E /* StorageServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41D206B72D50B9ED009A719E /* StorageServiceTests.swift */; };
 		41D206BA2D50BB26009A719E /* URLSessionMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41D206B92D50BB26009A719E /* URLSessionMock.swift */; };
-		41D206BF2D517C20009A719E /* NSLock+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41D206BE2D517C1F009A719E /* NSLock+Extensions.swift */; };
 		D931C7B92342D22700932612 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D931C7B82342D22700932612 /* AppDelegate.swift */; };
 		D931C7BB2342D22700932612 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D931C7BA2342D22700932612 /* ViewController.swift */; };
 		D931C7BE2342D22700932612 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D931C7BC2342D22700932612 /* Main.storyboard */; };
@@ -54,7 +53,6 @@
 		41D206B72D50B9ED009A719E /* StorageServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageServiceTests.swift; sourceTree = "<group>"; };
 		41D206B92D50BB26009A719E /* URLSessionMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionMock.swift; sourceTree = "<group>"; };
 		41D206BC2D50BE5A009A719E /* URLSessionProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionProtocol.swift; sourceTree = "<group>"; };
-		41D206BE2D517C1F009A719E /* NSLock+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSLock+Extensions.swift"; sourceTree = "<group>"; };
 		41D206C22D517C83009A719E /* SudoConfigManagerError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SudoConfigManagerError.swift; sourceTree = "<group>"; };
 		D91AD5D72787A56800006210 /* Dictionary+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Dictionary+Extensions.swift"; sourceTree = "<group>"; };
 		D931C7B62342D22700932612 /* TestApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TestApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -80,26 +78,20 @@
 /* Begin PBXFrameworksBuildPhase section */
 		D931C7B32342D22700932612 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 		D967447B278667AE00A3469C /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 				E2AF1E4B2D08CC9F0099B6D3 /* SudoConfigManager in Frameworks */,
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 		D9971C5E22FD299A0077076C /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 				E2AF1E492D08CC9A0099B6D3 /* SudoConfigManager in Frameworks */,
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
@@ -238,7 +230,6 @@
 		D9971C7A22FD41090077076C /* Extension */ = {
 			isa = PBXGroup;
 			children = (
-				41D206BE2D517C1F009A719E /* NSLock+Extensions.swift */,
 				D931C7CA2342D3D000932612 /* Data+Extensions.swift */,
 				D967449427869B9800A3469C /* Date+Extensions.swift */,
 				D91AD5D72787A56800006210 /* Dictionary+Extensions.swift */,
@@ -274,11 +265,7 @@
 			);
 			buildRules = (
 			);
-			dependencies = (
-			);
 			name = TestApp;
-			packageProductDependencies = (
-			);
 			productName = TestApp;
 			productReference = D931C7B62342D22700932612 /* TestApp.app */;
 			productType = "com.apple.product-type.application";
@@ -349,7 +336,6 @@
 				};
 			};
 			buildConfigurationList = D9971C5222FD299A0077076C /* Build configuration list for PBXProject "SudoConfigManager" */;
-			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -359,6 +345,7 @@
 			mainGroup = D9971C4E22FD299A0077076C;
 			packageReferences = (
 			);
+			preferredProjectObjectVersion = 90;
 			productRefGroup = D9971C5922FD299A0077076C /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -373,75 +360,55 @@
 /* Begin PBXResourcesBuildPhase section */
 		D931C7B42342D22700932612 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 				D931C7C32342D22800932612 /* LaunchScreen.storyboard in Resources */,
 				D9FD3DC323D6A2BC00781D80 /* sudoplatformconfig.json in Resources */,
 				D931C7C02342D22800932612 /* Assets.xcassets in Resources */,
 				D931C7BE2342D22700932612 /* Main.storyboard in Resources */,
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 		D967447C278667AE00A3469C /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 		D9971C5F22FD299A0077076C /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
 		D967448A27866E5100A3469C /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\ncp -f config/sudoplatformconfig.json \"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/\" || :\n";
+			shellScript = (
+				"# Type a script or drag a script file from your workspace to insert its path.",
+				"cp -f config/sudoplatformconfig.json \"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/\" || :",
+				"",
+			);
 		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		D931C7B22342D22700932612 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 				D931C7BB2342D22700932612 /* ViewController.swift in Sources */,
 				D931C7B92342D22700932612 /* AppDelegate.swift in Sources */,
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 		D967447A278667AE00A3469C /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 				D9674481278667AE00A3469C /* SudoConfigManagerIntegrationTests.swift in Sources */,
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 		D9971C5D22FD299A0077076C /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 				D9971C6722FD299A0077076C /* SudoConfigManagerTests.swift in Sources */,
-				41D206BF2D517C20009A719E /* NSLock+Extensions.swift in Sources */,
 				41D206B82D50B9ED009A719E /* StorageServiceTests.swift in Sources */,
 				41D206B42D50AC46009A719E /* S3ListObjectsParserTests.swift in Sources */,
 				41D206B62D50B93D009A719E /* S3ListObjectsParserMock.swift in Sources */,
@@ -449,7 +416,6 @@
 				413A55C82D4C84AF0051A90A /* SudoConfigManagerFactoryTests.swift in Sources */,
 				41D206BA2D50BB26009A719E /* URLSessionMock.swift in Sources */,
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
@@ -486,14 +452,14 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		D931C7C62342D22800932612 /* Debug */ = {
+		D931C7C62342D22800932612 /* Debug configuration for PBXNativeTarget "TestApp" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = UU2W43R8JA;
 				INFOPLIST_FILE = TestApp/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -507,14 +473,14 @@
 			};
 			name = Debug;
 		};
-		D931C7C72342D22800932612 /* Release */ = {
+		D931C7C72342D22800932612 /* Release configuration for PBXNativeTarget "TestApp" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = UU2W43R8JA;
 				INFOPLIST_FILE = TestApp/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -528,7 +494,7 @@
 			};
 			name = Release;
 		};
-		D9674485278667AE00A3469C /* Debug */ = {
+		D9674485278667AE00A3469C /* Debug configuration for PBXNativeTarget "SudoConfigManagerIntegrationTests" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
@@ -537,7 +503,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = UU2W43R8JA;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.sudoplatform.SudoConfigManagerIntegrationTests.SudoConfigManagerIntegrationTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -545,13 +511,13 @@
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TestApp.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/TestApp";
 			};
 			name = Debug;
 		};
-		D9674486278667AE00A3469C /* Release */ = {
+		D9674486278667AE00A3469C /* Release configuration for PBXNativeTarget "SudoConfigManagerIntegrationTests" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
@@ -560,7 +526,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = UU2W43R8JA;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.sudoplatform.SudoConfigManagerIntegrationTests.SudoConfigManagerIntegrationTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -568,13 +534,13 @@
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TestApp.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/TestApp";
 			};
 			name = Release;
 		};
-		D9971C6A22FD299A0077076C /* Debug */ = {
+		D9971C6A22FD299A0077076C /* Debug configuration for PBXProject "SudoConfigManager" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -626,20 +592,20 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 6.0;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
 			name = Debug;
 		};
-		D9971C6B22FD299A0077076C /* Release */ = {
+		D9971C6B22FD299A0077076C /* Release configuration for PBXProject "SudoConfigManager" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -685,20 +651,20 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 6.0;
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
 			name = Release;
 		};
-		D9971C7022FD299A0077076C /* Debug */ = {
+		D9971C7022FD299A0077076C /* Debug configuration for PBXNativeTarget "SudoConfigManagerTests" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
@@ -720,7 +686,7 @@
 			};
 			name = Debug;
 		};
-		D9971C7122FD299A0077076C /* Release */ = {
+		D9971C7122FD299A0077076C /* Release configuration for PBXNativeTarget "SudoConfigManagerTests" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
@@ -748,37 +714,33 @@
 		D931C7C52342D22800932612 /* Build configuration list for PBXNativeTarget "TestApp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				D931C7C62342D22800932612 /* Debug */,
-				D931C7C72342D22800932612 /* Release */,
+				D931C7C62342D22800932612 /* Debug configuration for PBXNativeTarget "TestApp" */,
+				D931C7C72342D22800932612 /* Release configuration for PBXNativeTarget "TestApp" */,
 			);
-			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 		D9674487278667AE00A3469C /* Build configuration list for PBXNativeTarget "SudoConfigManagerIntegrationTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				D9674485278667AE00A3469C /* Debug */,
-				D9674486278667AE00A3469C /* Release */,
+				D9674485278667AE00A3469C /* Debug configuration for PBXNativeTarget "SudoConfigManagerIntegrationTests" */,
+				D9674486278667AE00A3469C /* Release configuration for PBXNativeTarget "SudoConfigManagerIntegrationTests" */,
 			);
-			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 		D9971C5222FD299A0077076C /* Build configuration list for PBXProject "SudoConfigManager" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				D9971C6A22FD299A0077076C /* Debug */,
-				D9971C6B22FD299A0077076C /* Release */,
+				D9971C6A22FD299A0077076C /* Debug configuration for PBXProject "SudoConfigManager" */,
+				D9971C6B22FD299A0077076C /* Release configuration for PBXProject "SudoConfigManager" */,
 			);
-			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 		D9971C6F22FD299A0077076C /* Build configuration list for PBXNativeTarget "SudoConfigManagerTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				D9971C7022FD299A0077076C /* Debug */,
-				D9971C7122FD299A0077076C /* Release */,
+				D9971C7022FD299A0077076C /* Debug configuration for PBXNativeTarget "SudoConfigManagerTests" */,
+				D9971C7122FD299A0077076C /* Release configuration for PBXNativeTarget "SudoConfigManagerTests" */,
 			);
-			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */

@@ -7,7 +7,7 @@
 import Foundation
 
 /// List of errors returned `SudoConfigManger` implementations.
-public enum SudoConfigManagerError: Error {
+public enum SudoConfigManagerError: Error, Sendable {
 
     /// Indicates that a compatibility issue was found against the currently deployed set of
     /// backend services.
@@ -20,7 +20,7 @@ public enum SudoConfigManagerError: Error {
     case compatibilityIssueFound(incompatible: [ServiceCompatibilityInfo], deprecated: [ServiceCompatibilityInfo])
 
     /// Backed service is temporarily unavailable due to network or service availability issues.
-    case serviceError(cause: Error)
+    case serviceError(cause: any Error & Sendable)
 
     /// Indicates that a fatal error occurred. This could be due to coding error, out-of-memory
     /// condition or other conditions that is beyond control of `S3Client` implementation.

@@ -7,7 +7,7 @@
 import Foundation
 @testable import SudoConfigManager
 
-class S3ListObjectsParserMock: S3ListObjectsParser {
+class S3ListObjectsParserMock: S3ListObjectsParser, @unchecked Sendable {
 
     var parseCalled = false
     var parseCallCount = 0

@@ -67,15 +67,6 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "D967447D278667AE00A3469C"
-            BuildableName = "SudoConfigManagerIntegrationTests.xctest"
-            BlueprintName = "SudoConfigManagerIntegrationTests"
-            ReferencedContainer = "container:SudoConfigManager.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

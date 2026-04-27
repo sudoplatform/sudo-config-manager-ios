@@ -8,7 +8,7 @@ import Foundation
 
 /// Result returned by `validateConfig` API if an incompatible client config is found
 /// when compared to the deployed backend services.
-public struct ServiceCompatibilityInfo: Equatable {
+public struct ServiceCompatibilityInfo: Equatable, Sendable {
 
     // MARK: - Properties
 
