@@ -21,9 +21,17 @@ enum SendableValue: Sendable {
     init(_ value: Any) {
         switch value {
         case let s as String: self = .string(s)
-        case let b as Bool: self = .bool(b)
-        case let i as Int: self = .int(i)
-        case let d as Double: self = .double(d)
+        case let number as NSNumber:
+            // CFBoolean is a specific NSNumber subclass used by JSONSerialization for true/false.
+            // Identity-compare against kCFBooleanTrue/kCFBooleanFalse to avoid numeric 0/1
+            // being misidentified as Bool.
+            if number === kCFBooleanTrue || number === kCFBooleanFalse {
+                self = .bool(number.boolValue)
+            } else if number.objCType.pointee == 0x64 { // 'd' for double
+                self = .double(number.doubleValue)
+            } else {
+                self = .int(number.intValue)
+            }
         case let dict as [String: Any]: self = .dictionary(dict.mapValues(SendableValue.init))
         case let arr as [Any]: self = .array(arr.map(SendableValue.init))
         default: self = .null

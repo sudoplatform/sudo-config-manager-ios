@@ -16,7 +16,9 @@
       "TEST",
       "FSSO"
     ],
-    "customFSSOUserIdAttributes": "sub"
+    "customFSSOUserIdAttributes": "sub",
+    "additionalNumericTestValue": 0,
+    "additionalBooleanTestValue": true
   },
   "apiService": {
     "apiUrl": "https://zz4syukdwffc3npfiddjtsemou.appsync-api.us-east-1.amazonaws.com/graphql",
